@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.first_name }} {{ user.last_name }}! You are logged in.</p>
+        <p>Role: {{ user.get_role_display }}</p>
+        <p>Rank: {{ user.get_rank_display }}</p>
+        <a href="{% url 'register' %}">Logout</a>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'register' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</body>
+</html>
