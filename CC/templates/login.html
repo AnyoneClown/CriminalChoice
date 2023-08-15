@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -13,7 +13,6 @@
         <h1>Become a part of something bigger</h1>
         <form method="post">
             {% csrf_token %}
-
             {% for field in form %}
 	    		{{ field.label_tag }} 
 	        	{{ field }}
@@ -21,8 +20,7 @@
 	        		<small class="error">{{ field.errors|striptags  }}</small> 
 	        	{% endif %}
 		    {% endfor %}
-            <button type="submit">Register</button>
-            <div class="login-button">Already have an account? <a href="{% url 'login' %}" class="login-link">Login</a></div>
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>

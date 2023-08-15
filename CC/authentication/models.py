@@ -70,6 +70,18 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(('Superuser must have is_superuser=True.'))
         return self.create_user(email, password, **extra_fields)
 
+    def authenticate(self, request, email, password):
+        try:
+            user = CustomUser.objects.get(email=email)
+            if user.password == password:
+                return user
+        except CustomUser.DoesNotExist:
+            return None
+        
+        if user.check_password(password):
+            return user
+        return None
+        
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=50, unique=True)
@@ -95,3 +107,9 @@ class CustomUser(AbstractBaseUser):
             self.rank = GANG_RANK_CHOICES[0][0]
 
         super().save(*args, **kwargs)
+
+    def get_gang_rank_display(self):
+        return GANG_RANK_CHOICES[self.rank]
+
+    def get_mafia_rank_display(self):
+        return MAFIA_RANK_CHOICES[self.rank]

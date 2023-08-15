@@ -1,76 +1,95 @@
 /* Global styles */
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Geometria', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center; /* Вертикальное центрирование */
-    justify-content: center; /* Горизонтальное центрирование */
-    min-height: 100vh; /* Чтобы форма была посередине даже при небольшом контенте */
-    background-image: url("/static/images/bg.jpg");
-    background-size: cover; /* Розтягнути зображення на весь контейнер */
-    background-repeat: no-repeat; /* Заборонити повторення зображення */
-    padding: 20px; /* Додати відступи для зручності читання */
+  margin: 0;
+  padding: 0;
+  font-family: 'Geometria', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center; /* Вертикальное центрирование */
+  justify-content: center; /* Горизонтальное центрирование */
+  min-height: 100vh; /* Чтобы форма была посередине даже при небольшом контенте */
+  background-image: url("/static/images/bg.jpg");
+  background-size: cover; /* Розтягнути зображення на весь контейнер */
+  background-repeat: no-repeat; /* Заборонити повторення зображення */
+  padding: 20px; /* Додати відступи для зручності читання */
 }
 
-  
-  /* Header styles */
-  
-  h1 {
-    font-size: 3em;
-    margin: 20px 0;
-    text-align: center;
-    color: white;
-  }
-  
-  /* Form styles */
-  
-  form {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 600px; /* Максимальная ширина контейнера */
-    margin: 0 auto;
-}
-  
-  form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  form input[type="text"],
-  form input[type="password"],
-  form input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  form button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4e577a;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
 
-  form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Header styles */
+
+h1 {
+  font-size: 3em;
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+}
+
+/* Login button styles in register */
+
+.login-button {
+  margin-top: 10px; /* Відступ зверху */
+  font-size: 16px;
+  text-align: center;
+}
+
+.login-link {
+display: inline-block;
+padding: 10px 20px;
+background-color: #4e577a;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+}
+
+
+/* Form styles in register*/
+
+form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 600px; /* Максимальная ширина контейнера */
+  margin: 0 auto;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4e577a;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
