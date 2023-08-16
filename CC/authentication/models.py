@@ -4,10 +4,10 @@ from django.utils.translation import gettext_lazy as _
 import datetime
 
 ROLE_CHOICES = (
-    (0, 'visitor'),
-    (1, 'mafia'),
-    (2, 'gang'),
-    (3, 'admin'),
+    (0, 'Visitor'),
+    (1, 'Mafia'),
+    (2, 'Gang'),
+    (3, 'Admin'),
 )
 
 GANG_RANK_CHOICES = (
@@ -33,8 +33,7 @@ MAFIA_RANK_CHOICES = (
     (7, 'Capo'),
     (8, 'Sotoo Capo'),
     (9, 'Destra Boss'),
-    (10, 'Consigliere'),
-    (11, 'Don'),
+    (10, 'Don'),
 )
 
 class CustomUserManager(BaseUserManager):
@@ -86,7 +85,8 @@ class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=50, unique=True)
     role = models.IntegerField(choices=ROLE_CHOICES, default = 0)
-    rank = models.IntegerField(default=0)
+    rank = models.IntegerField(default=1)
+    balance = models.IntegerField(default=0)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -109,7 +109,7 @@ class CustomUser(AbstractBaseUser):
         super().save(*args, **kwargs)
 
     def get_gang_rank_display(self):
-        return GANG_RANK_CHOICES[self.rank]
+        return f"{self.rank + 1} - {GANG_RANK_CHOICES[self.rank][1]}"
 
     def get_mafia_rank_display(self):
-        return MAFIA_RANK_CHOICES[self.rank]
+        return f"{self.rank + 1} - {MAFIA_RANK_CHOICES[self.rank][1]}"

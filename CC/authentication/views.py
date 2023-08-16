@@ -7,7 +7,7 @@ from .forms import RegisterForm, LoginForm
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.contrib.auth.decorators import login_required
-
+import random
 
 
 
@@ -54,6 +54,20 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+def random_money(request):
+    rand_money = random.randint(-1000, 1000)
+    request.user.balance += rand_money
+    request.user.save()
+    messages.success(request, 'You gots $' + str(rand_money))
+
+    return redirect('casino')
+    
+
 @login_required(login_url="login")
 def home(request):
     return render(request, 'home.html')
+
+
+@login_required(login_url="login")
+def casino(request):
+    return render(request, 'casino.html')

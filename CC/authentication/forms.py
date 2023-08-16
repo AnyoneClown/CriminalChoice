@@ -13,4 +13,6 @@ class LoginForm(forms.Form):
     email = forms.EmailField(max_length=254)
     password = forms.CharField(widget=forms.PasswordInput)
 
+class BetForm(forms.Form):
+    amount = forms.IntegerField()
     

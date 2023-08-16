@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Casino</h1>
+        </header>
+        <div class="container">
+            <div class="content">
+                <p>Welcome to the casino! Press the button to try your luck and win some money.</p>
+                <p>Your Balance: {{ user.balance }} $</p>
+                <form action="{% url 'random_money' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="auth-link"><img src="{% static 'images/chip.png' %}" alt="Casino" class="casino-img"></button>
+                </form>
+
+                <a href="{% url 'home' %}" class="auth-link">Home</a>
+            </div>
+        </div>
+    <div>
+</body>
+</html>

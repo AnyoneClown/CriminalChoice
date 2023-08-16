@@ -6,25 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    {% if user.is_authenticated %}
-        {% if user.role == 1 %}
-            <p>Hello, {{ user.username }}. You are logged in!</p>
-            <p>Role: {{ user.get_role_display }}</p>
-            <p>Rank: {{ user.get_mafia_rank_display }}</p>
-            <a href="{% url 'logout' %}">Logout</a>
-        {% elif user.role == 2 %}
-            <p>Hello, {{ user.username }}. You are logged in!</p>
-            <p>Role: {{ user.get_role_display }}</p>
-            <p>Rank: {{ user.get_gang_rank_display }}</p>
-            <a href="{% url 'logout' %}">Logout</a>
-        {% endif %}
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+    <div class="container">
+        <header>
+            <h1>Welcome to the home</h1>
+        </header>
+        <main>
+            <div class="content">
+                {% if user.is_authenticated %}
+                    {% if user.role == 1 %}
+                        <img src="{% static 'images/mafia.png' %}" alt="Mafia" class="mafia-img"></p>
+                    {% elif user.role == 2 %}
+                        <img src="{% static 'images/gangsta.png' %}" alt="Gangsta" class="gangsta-img"></p>
+                    {% endif %}
+                    <p>Hello, {{ user.username }}</p>
+                    <p>Role: {{ user.get_role_display }}</p>
+                    {% if user.role == 1 %}
+                        <p>Rank: {{ user.get_mafia_rank_display }}</p>
+                    {% elif user.role == 2 %}
+                        <p>Rank: {{ user.get_gang_rank_display }}</p>
+                    {% endif %}
+                    <p>Balance: {{ user.balance }} $</p>
+                    <a href="{% url 'casino' %}" class="logout-link">Casino</a>
+                    <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+                {% else %}
+                    <p>You are not logged in.</p>
+                    <a href="{% url 'login' %}" class="auth-link">Login</a> | <a href="{% url 'register' %}" class="auth-link">Register</a>
+                {% endif %}
+            </div>
+        </main>
+    </div>
 </body>
 </html>
