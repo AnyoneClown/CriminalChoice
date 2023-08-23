@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Welcome to the home</h1>
+            <h1>Weaponry</h1>
         </header>
         <nav class="navbar">
             <a href="{% url 'casino' %}" class="navbar-link">Casino</a>
@@ -19,9 +19,25 @@
             <a href="{% url 'armory' %}" class="navbar-link">Shop</a>
         </nav>          
         <main>
-            <div class="content">
+            <div class="content-weaponary">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gun</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for purchase in user_purchases %}
+                            <tr>
+                                <td>{{ purchase.gun__name }}</td>
+                                <td>{{ purchase.total_quantity }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-        </main>
+        </main>        
         <footer>
             <p>&copy; Copyright {% now "Y" %} by <a class="footer-link" href="https://github.com/AnyoneClown">AnyoneClown</a></p>
         </footer>

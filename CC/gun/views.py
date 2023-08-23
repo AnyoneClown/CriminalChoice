@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import PurchaseForm
 from django.contrib import messages
 from .models import Gun, Purchase
+from django.db.models import Count
 
 @login_required(login_url="login")
 def guns(request):
@@ -35,5 +36,8 @@ def purchase_gun(request):
 
     return render(request, 'gun/armory.html', {'form': form})
 
+
+@login_required(login_url="login")
 def weapons(request):
-    return render(request, 'gun/guns.html')
+    user_purchases = Purchase.objects.filter(user=request.user).values('gun__name').annotate(total_quantity=Count('gun__name'))
+    return render(request, 'gun/guns.html', {'user_purchases': user_purchases})
