@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weapon Stand</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Weapon Stand</h1>
+        </header>
+        <nav class="navbar">
+            <a href="{% url 'casino' %}" class="navbar-link">Casino</a>
+            <a href="{% url 'home' %}" class="navbar-link">Home</a>
+            <a href="{% url 'weapons' %}" class="navbar-link">Weapons</a>
+        </nav>   
+        <div class="money">Balance: {{ user.balance }} $</div>
+        {% if messages %}
+        <div class="content">
+            <ul class="messages">
+                {% for message in messages|slice:":5" %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="content-weapon">
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Pistol.png" alt="Pistol">
+                <p>Barrett M82</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="1">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Gusenberg.png" alt="Gusenberg">
+                <p>Gusenberg Sweeper</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="2">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Assaultrifle.png" alt="Assault Riffle">
+                <p>Assault Riffle</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="3">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Pumpshotgun.png" alt="Pump Shotgun">
+                <p>Pump Shotgun</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="4">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Revolver.png" alt="Revolver">
+                <p>Revolver</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="5">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+            <div class="weapon">
+                <img class="weapon-img" src="/static/images/guns/Microsmg.png" alt="Micro SMG">
+                <p>Micro SMG</p>
+                <form method="POST" action="{% url 'purchase_gun' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gun" id="gun_id" value="6">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}"">
+                    <button type="submit">Purchase</button>
+                </form>
+            </div>
+        </div>
+            <footer>
+                <p>&copy; Copyright {% now "Y" %} by <a class="footer-link" href="https://github.com/AnyoneClown">AnyoneClown</a></p>
+            </footer>
+    </div>
+    </form>
+</body>
+</html>

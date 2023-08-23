@@ -13,8 +13,14 @@
         <header>
             <h1>Welcome to the home</h1>
         </header>
+        <nav class="navbar">
+            <a href="{% url 'casino' %}" class="navbar-link">Casino</a>
+            <a href="{% url 'armory' %}" class="navbar-link">Shop</a>
+            <a href="{% url 'weapons' %}" class="navbar-link">Weapons</a>
+            <a href="{% url 'logout' %}" class="navbar-link">Logout</a>
+        </nav>          
         <main>
-            <div class="content">
+            <div class="content-home">
                 {% if user.is_authenticated %}
                     {% if user.role == 1 %}
                         <img src="{% static 'images/mafia.png' %}" alt="Mafia" class="mafia-img"></p>
@@ -29,14 +35,15 @@
                         <p>Rank: {{ user.get_gang_rank_display }}</p>
                     {% endif %}
                     <p>Balance: {{ user.balance }} $</p>
-                    <a href="{% url 'casino' %}" class="logout-link">Casino</a>
-                    <a href="{% url 'logout' %}" class="logout-link">Logout</a>
                 {% else %}
                     <p>You are not logged in.</p>
                     <a href="{% url 'login' %}" class="auth-link">Login</a> | <a href="{% url 'register' %}" class="auth-link">Register</a>
                 {% endif %}
             </div>
         </main>
+        <footer>
+            <p>&copy; Copyright {% now "Y" %} by <a class="footer-link" href="https://github.com/AnyoneClown">AnyoneClown</a></p>
+        </footer>
     </div>
 </body>
 </html>

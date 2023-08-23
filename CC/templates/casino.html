@@ -13,18 +13,33 @@
         <header>
             <h1>Casino</h1>
         </header>
+        <nav class="navbar">
+            <a href="{% url 'armory' %}" class="navbar-link">Armory</a>
+            <a href="{% url 'home' %}" class="navbar-link">Shop</a>
+        </nav>   
         <div class="container">
             <div class="content">
                 <p>Welcome to the casino! Press the button to try your luck and win some money.</p>
                 <p>Your Balance: {{ user.balance }} $</p>
-                <form action="{% url 'random_money' %}" method="post">
+                <form action="{% url 'play_game' %}" method="post">
                     {% csrf_token %}
+                    <label for="{{ form.amount.id_for_label }}">Enter Bet Amount:</label>
+                    {{ form.amount }}
                     <button type="submit" class="auth-link"><img src="{% static 'images/chip.png' %}" alt="Casino" class="casino-img"></button>
                 </form>
 
-                <a href="{% url 'home' %}" class="auth-link">Home</a>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages|slice:":5" %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
-    <div>
+        <footer>
+            <p>&copy; Copyright {% now "Y" %} by <a class="footer-link" href="https://github.com/AnyoneClown">AnyoneClown</a></p>
+        </footer>
+    </div>
 </body>
 </html>

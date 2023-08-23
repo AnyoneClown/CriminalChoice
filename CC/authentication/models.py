@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
-import datetime
 
 ROLE_CHOICES = (
     (0, 'Visitor'),
@@ -86,7 +85,7 @@ class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     role = models.IntegerField(choices=ROLE_CHOICES, default = 0)
     rank = models.IntegerField(default=1)
-    balance = models.IntegerField(default=0)
+    balance = models.IntegerField(default=1000)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

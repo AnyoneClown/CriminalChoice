@@ -1,9 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
-from django.contrib.auth.views import LogoutView
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, BetForm
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.contrib.auth.decorators import login_required
@@ -45,7 +44,7 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'login.html', {'form': form})
-    
+        
 def logout_view(request):
     user = request.user
     user.is_active = False
@@ -54,14 +53,31 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-def random_money(request):
-    rand_money = random.randint(-1000, 1000)
-    request.user.balance += rand_money
-    request.user.save()
-    messages.success(request, 'You gots $' + str(rand_money))
+def play_game(request):
+    if request.method == 'POST':
+        form = BetForm(request.POST)
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
 
-    return redirect('casino')
-    
+            if amount > request.user.balance:
+                messages.info(request, 'Not enough money')
+                return redirect('play_game')
+            
+            # Calculate winning percentage and generate a random result
+            win_percentage = random.randint(-90, 90) / 100
+            rand_money = int(amount * win_percentage)
+            
+            request.user.balance += rand_money
+            request.user.save()
+            
+            if rand_money > 0:
+                messages.success(request, f"You won {str(rand_money)}$")
+            else:
+                messages.success(request, f"You lost {str(rand_money)}$")
+            return redirect('casino')
+    else:
+        form = BetForm()
+    return render(request, 'casino.html', {'form': form})
 
 @login_required(login_url="login")
 def home(request):

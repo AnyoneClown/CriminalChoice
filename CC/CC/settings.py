@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'gun',
 ]
 
 AUTH_USER_MODEL = "authentication.CustomUser"
