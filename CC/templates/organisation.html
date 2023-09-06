@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisation</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the organisation</h1>
+        </header>
+        <nav class="navbar">
+            <a href="{% url 'home' %}" class="navbar-link">Home</a>
+        </nav>          
+        <main>
+            <div class="content-organisation">
+                <table>
+                    <thead>
+                      <tr>
+                        <th>Email</th>
+                        <th>Ім'я користувача</th>
+                        <th>Роль</th>
+                        <th>Ранг</th>
+                        <th>Баланс</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for member in members %}
+                        <tr>
+                          <td>{{ member.email }}</td>
+                          <td>{{ member.username }}</td>
+                          <td>{{ member.get_role_display }}</td>
+                          <td>{{ member.rank|add:1 }}</td>
+                          <td>{{ member.balance }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; Copyright {% now "Y" %} by <a class="footer-link" href="https://github.com/AnyoneClown">AnyoneClown</a></p>
+        </footer>
+    </div>
+</body>
+</html>

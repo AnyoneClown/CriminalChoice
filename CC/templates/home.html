@@ -17,6 +17,7 @@
             <a href="{% url 'casino' %}" class="navbar-link">Casino</a>
             <a href="{% url 'armory' %}" class="navbar-link">Shop</a>
             <a href="{% url 'weapons' %}" class="navbar-link">Weapons</a>
+            <a href="{% url 'organisation' %}" class="navbar-link">Organisation</a>
             <a href="{% url 'logout' %}" class="navbar-link">Logout</a>
         </nav>          
         <main>
@@ -29,11 +30,11 @@
                     {% endif %}
                     <p>Hello, {{ user.username }}</p>
                     <p>Role: {{ user.get_role_display }}</p>
-                    {% if user.role == 1 %}
+                    <!-- {% if user.role == 1 %} -->
                         <p>Rank: {{ user.get_mafia_rank_display }}</p>
-                    {% elif user.role == 2 %}
+                    <!-- {% elif user.role == 2 %} -->
                         <p>Rank: {{ user.get_gang_rank_display }}</p>
-                    {% endif %}
+                    <!-- {% endif %} -->
                     <p>Balance: {{ user.balance }} $</p>
                 {% else %}
                     <p>You are not logged in.</p>

@@ -251,22 +251,50 @@ img.casino-img {
   font-size: 16px;
 }
 
+.content-organisation {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px ;
+  text-align: center;
+  font-size: 16px;
+}
+
+.content-login {
+  background-color: #fff;
+  margin: 10px auto;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  font-size: 16px;
+}
+
 /* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid #ddd;
+  border-spacing: 0;
 }
 
 th, td {
-  padding: 8px;
+  padding: 12px 15px;
   text-align: left;
+  border: 1px solid #ccc;
 }
 
 th {
   background-color: #4e577a;
   color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
 }

@@ -36,6 +36,7 @@
                 <p>Barrett M82</p>
                 <form method="POST" action="{% url 'purchase_gun' %}">
                     {% csrf_token %}
+                    
                     <input type="hidden" name="gun" id="gun_id" value="1">
                     <input type="hidden" id="user_id" name="user_id" value="{{ request.user.id }}">
                     <button type="submit">Purchase</button>

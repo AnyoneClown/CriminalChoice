@@ -9,9 +9,6 @@ class Gun(models.Model):
     def __str__(self):
         return self.name
     
-    def purchased_count(self):
-        return self.user.count()
-    
 class Purchase(models.Model):
     gun = models.ForeignKey(Gun, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
